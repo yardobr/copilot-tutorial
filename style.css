@@ -1,0 +1,80 @@
+/* Reset the browser styles */
+html, body, div, span, applet, object, iframe {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* Make a box sizing set to border-box for each element on the page */
+* {
+    box-sizing: border-box;
+}
+
+/* 
+Generate the styles for a 3x3 table with square cells
+- The heading with a class "heading" should be centered horizontally and have a 30px margin above it
+- The table should fill the 50% of the viewport
+- The cells should have a 1px solid dark grey borders
+- The table is an element with class "table"
+- The rows are elements with class "row"
+- The cells are elements with class "cell"
+- All the table elements should be positioned using flexbox
+- The cells should have a width and height of 33.33%
+- The cells should have a padding of 10% of the cell width
+- The text in the cells should be centered horizontally and vertically
+- The table should be centered horizontally and vertically
+- The button with an id "undo-btn" should be position below the table
+- The button with an id "reset-btn" should be position below the undo button
+- Both buttons have a class "btn"
+- The buttons should be highlighted when the mouse is over them
+- The buttons should be equally sized, centered horizontally and have a 12px margin between them
+*/
+
+.heading {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+    height: 12rem;
+    border: 1px solid darkgrey;
+    margin: 30px auto;
+    padding: 0;
+}
+
+.row {
+    display: flex;
+    flex: 1 1 100%;
+    flex-wrap: nowrap;
+    height: 33.33%;
+}
+
+.cell {
+    display: inline-block;
+    border: 1px solid darkgrey;
+    width: 4rem;
+    height: 4rem;
+    padding: 10%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.btn {
+    display: block;
+    width: 30%;
+    height: 30px;
+    margin: 12px auto;
+    border: 1px solid darkgrey;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: lightgrey;
+}
+
