@@ -1,0 +1,17 @@
+ /* generate styles for an element with id board */
+#board {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 33rem;
+    height: 33rem;
+    margin: 30px auto;
+    border: 3px solid #ccc;
+}
+
+/* generate styles for element with class row */
+/* it should be flex and all have an equal height in a parent flex container  */
+.row {
+    display: flex;
+    flex: 1 0 33%;
+}

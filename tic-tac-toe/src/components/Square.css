@@ -1,0 +1,15 @@
+.square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 33%;
+    border: 1px solid #ccc;
+    font-size: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
