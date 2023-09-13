@@ -17,6 +17,9 @@ function App() {
   // set the initial state of the winner
   const [winner, setWinner] = useState(null);
 
+  // create a state for the last move
+  const [lastMove, setLastMove] = useState(null);
+
   const onSquareClicked = (r, c) => {
     // create a copy of the board
     const boardCopy = board.map(r => [...r]);
@@ -28,6 +31,8 @@ function App() {
         setBoard(boardCopy);
         // set the current player to the next player
         setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
+        // set the last move to the current move
+        setLastMove({ r, c });
     }
 
     if (isGameOver(boardCopy)) {
@@ -45,6 +50,22 @@ function App() {
     setWinner(null);
   };
 
+  const undoLastMove = () => {
+    const boardCopy = board.map(r => [...r]);
+    // if the last move is not null
+    if (!lastMove)  {
+      return;
+    }
+    // set the square to null
+    boardCopy[lastMove.r][lastMove.c] = null;
+    // set the board to the new board
+    setBoard(boardCopy);
+    // set the current player to the previous player
+    setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
+    // set the last move to null
+    setLastMove(null);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -59,6 +80,8 @@ function App() {
         disabled={winner !== null}
       />
 
+      {/* show the button with a title "Undo last move" */}
+      <button className="btn" disabled={ !lastMove } onClick={() => undoLastMove()}>Undo last move</button>
       {/* show the button to restart the game and set the state value to default */}
       <button className="btn" onClick={() => restartGame()}>Restart the game</button>
     </div>
