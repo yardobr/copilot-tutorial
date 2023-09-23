@@ -17,12 +17,7 @@ def get_first_simple_numbers(n):
                 break
         if is_simple:
             simple_numbers.append(i)
-            #  TODO: remove this
-            print('simple number', i)
-            print('simple numbers found', len(simple_numbers))
         i += 1
-        # TODO: remove this
-        # print(i)
     return simple_numbers
 
 start_time = time.time()
