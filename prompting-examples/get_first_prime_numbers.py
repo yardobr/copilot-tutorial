@@ -24,3 +24,25 @@ start_time = time.time()
 print(get_first_prime_numbers(1000))
 end_time = time.time()
 print(f"Execution time in seconds : {end_time - start_time}")
+
+# generate tests for get_first_prime_numbers function
+# test 1: get_first_prime_numbers(1) should return [2]
+# test 2: get_first_prime_numbers(2) should return [2, 3]
+# test 3: get_first_prime_numbers(3) should return [2, 3, 5]
+# test 4: get_first_prime_numbers(4) should return [2, 3, 5, 7]
+
+# Path: prompting-examples/test_get_first_prime_numbers.py
+# create a function called test_get_first_prime_numbers that takes no arguments and returns True if all tests pass, otherwise False
+# use assert statements to test the function get_first_prime_numbers
+# use try except to catch exceptions
+# use the function test_get_first_prime_numbers to test the function get_first_prime_numbers
+
+def test_get_first_prime_numbers():
+    try:
+        assert get_first_prime_numbers(1) == [2]
+        assert get_first_prime_numbers(2) == [2, 3]
+        assert get_first_prime_numbers(3) == [2, 3, 5]
+        assert get_first_prime_numbers(4) == [2, 3, 5, 7]
+        return True
+    except:
+        return False
