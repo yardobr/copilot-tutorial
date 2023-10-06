@@ -3,6 +3,8 @@
     it should have a link to tailwind.css CDN in the head
     it should have a link to main.css in the head
     it should have a link to JQuery CDN in the body
+    it should have an input to prompt user's input with a label "Your prompt"
+    it should have the Submit button to submit the prompt
  -->
 
 <!DOCTYPE html>
@@ -14,10 +16,19 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <h1>Prompting Examples</h1>
-    <p>Click the button below to see a prompt</p>
-    <button id="prompt-button">Click Me</button>
+    <div class="container mx-auto">
+        <h1 class="text-3xl text-center">Prompting Examples</h1>
+        <form action="prompting.php" method="post">
+            <div class="flex flex-col">
+                <label for="prompt" class="text-xl">Your prompt</label>
+                <input type="text" name="prompt" id="prompt" class="border-2 border-gray-400 rounded-md p-2">
+            </div>
+            <div class="flex justify-center">
+                <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            </div>
+        </form>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="main.js"></script>
-    
+    <script src="prompting.js"></script>
 </body>
+</html>
