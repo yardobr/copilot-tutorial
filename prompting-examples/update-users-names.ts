@@ -1,22 +1,23 @@
-import User from './User.model';
+import mongoose from 'mongoose';
 
-export const updateUsersNames = async () => {
-    let offset = 0;
-    let limit = 100;
+const User = mongoose.model('User');
 
-    const usersCount = await User.count();
+(async () => {
+    const users = await User.find({});
+    const chunkSize = 1000;
 
-    while (offset < usersCount) {
-        const users = await User.find({}).skip(offset).limit(limit);
-        const updatedUser = users.map(user => {
-            user.name = `${user.firstName} ${user.lastName}`;
-            return user;
-        });
-        User.bulkWrite(updatedUser.map(user => ({
+    while (users.length) {
+        const chunk = users.splice(0, chunkSize);
+
+        const bulkWrite = chunk.map(user => ({
             updateOne: {
                 filter: { _id: user._id },
-                update: { $set: { name: user.name } }
+                update: { name: `${user.firstName} ${user.lastName}` }
             }
-        })));
+        }));
+
+        await User.bulkWrite(bulkWrite);
     }
-};
+
+    console.log(`Done!`);
+})();
