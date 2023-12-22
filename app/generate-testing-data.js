@@ -1,5 +1,9 @@
+const path = require('path');
+const dotenv = require('dotenv').config({ path: 'env/.env' });
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('/var/folders/orders.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);
+
+const dbPath = path.resolve(__dirname, process.env.DB_PATH);
+const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);
 
 const run = (query, params = []) => {
     return new Promise((resolve, reject) => {
@@ -46,7 +50,7 @@ const insertRandomData = async () => {
     }
 
     // Insert Orders
-    for (let i = 0; i < 1000000; i++) {
+    for (let i = 0; i < 500000; i++) {
         const userId = Math.floor(Math.random() * 200) + 1;
         const productId = Math.floor(Math.random() * 50) + 1;
         const total = Math.random() * 1000;
@@ -56,6 +60,12 @@ const insertRandomData = async () => {
 
 const main = async () => {
     try {
+        process.on('exit', () => {
+            console.log('Closing database connection...');
+            db.close();
+            console.log('Database connection closed!');
+        });
+        // TODO: Uncomment the following line to create tables
         await createTables();
         console.log('Inserting random data...');
         await insertRandomData();
