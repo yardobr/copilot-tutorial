@@ -1,0 +1,8 @@
+# basic dockerignore for node projects
+# ignore node_modules and any files that start with . or # or ~
+
+node_modules
+npm-debug.log
+
+# ignore vscode files
+.vscode
